@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,14 +10,18 @@ public class PlayerMovement : MonoBehaviour
     InputAction lookAction;
     Rigidbody rb;
     public Transform cameraTransform;
+    CapsuleCollider capsule;
 
-    float moveSensitivity = .5f;
-    float jumpSensitivity = 1.0f;
+    float moveSensitivity = 100f;
+    float moveInAirSensitivity = 50f;
+    float jumpSensitivity = 35f;
     float lookSensitivity = .3f;
 
     float xRotation = 0f;
     float upperLookLimit = 90f;
     float lowerLookLimit = -90f;
+
+    Boolean isGrounded = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         lookAction = inputAsset.FindAction("Look");
 
         rb = GetComponent<Rigidbody>();
+        capsule = GetComponent<CapsuleCollider>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -52,9 +58,28 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        float rayDist = .2f;
+        Vector3 origin = transform.position + Vector3.up * rayDist;
+        float distance = capsule.bounds.extents.y + rayDist;
+
+        Debug.DrawRay(origin, Vector3.down * distance, Color.red);
+
+        isGrounded = Physics.Raycast(origin, Vector3.down, distance);
+
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
         float jumpValue = jumpAction.ReadValue<float>();
         Vector3 move = transform.right * moveValue.x + transform.forward * moveValue.y;
-        rb.AddForce(move * moveSensitivity + Vector3.up * jumpValue * jumpSensitivity, ForceMode.VelocityChange);
+        if (isGrounded)
+        {
+            rb.AddForce(move * moveSensitivity, ForceMode.Force);
+        } else
+        {
+            rb.AddForce(move * moveInAirSensitivity, ForceMode.Force);
+        }
+        
+        if (isGrounded && jumpValue > 0)
+        {
+            rb.AddForce(Vector3.up * jumpValue * jumpSensitivity, ForceMode.Impulse);
+        }
     }
 }
