@@ -4,18 +4,24 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    [Header("Abilities")]
+    public Boolean doubleJump = false;
+
+    [Header("GameObject References")]
+    public Transform cameraTransform;
+    public CapsuleCollider groundCollider;
+
     InputActionAsset inputAsset;
     InputAction moveAction;
     InputAction jumpAction;
     InputAction lookAction;
     Rigidbody rb;
-    public Transform cameraTransform;
-    public CapsuleCollider groundCollider;
 
-
-    float moveSensitivity = 100f;
-    float moveInAirSensitivity = 50f;
-    float jumpSensitivity = 35f;
+    float moveSensitivity = 55f;
+    float moveInAirSensitivity = 30f;
+    float jumpSensitivity = 20f;
+    float doubleJumpSensitivity = 25f;
     float lookSensitivity = .3f;
 
     float xRotation = 0f;
@@ -23,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     float lowerLookLimit = -90f;
 
     Boolean isGrounded = false;
+    int jumpCount = 0;
+    Boolean jumpPressedLastFrame = false;
+    Boolean jumpPressed = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -77,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
-        float jumpValue = jumpAction.ReadValue<float>();
+
         Vector3 move = transform.right * moveValue.x + transform.forward * moveValue.y;
 
         if (isGrounded)
@@ -89,10 +98,25 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(move * moveInAirSensitivity, ForceMode.Force);
         }
 
-        if (isGrounded && jumpValue > 0)
+        // jumping
+        float jumpValue = jumpAction.ReadValue<float>();
+
+        jumpPressed = jumpAction.ReadValue<float>() > 0.5f;
+
+        if (isGrounded)
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0.0f, rb.linearVelocity.z);
-            rb.AddForce(Vector3.up * jumpValue * jumpSensitivity, ForceMode.Impulse);
+            jumpCount = 0;
         }
+
+        if (jumpPressed && !jumpPressedLastFrame && jumpCount < (doubleJump ? 2 : 1))
+        {
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+            rb.AddForce(Vector3.up * (jumpCount == 0 ? jumpSensitivity : doubleJumpSensitivity), ForceMode.Impulse);
+            jumpCount++;
+        }
+
+        jumpPressedLastFrame = jumpPressed;
+
+
     }
 }

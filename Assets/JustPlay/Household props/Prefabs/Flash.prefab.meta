@@ -1,10 +1,5 @@
 fileFormatVersion: 2
 guid: 472dee883731ddd4e869f05891e40880
-PrefabImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
   productId: 164984
@@ -12,3 +7,8 @@ AssetOrigin:
   packageVersion: 1.0
   assetPath: Assets/JustPlay/Household props/Prefabs/Flash.prefab
   uploadId: 365290
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
