@@ -42,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         Vector2 lookValue = lookAction.ReadValue<Vector2>();
 
         float mouseX = lookValue.x * lookSensitivity;
@@ -53,12 +52,11 @@ public class PlayerMovement : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         transform.Rotate(Vector3.up * mouseX);
-
     }
 
     void FixedUpdate()
     {
-        float rayDist = .2f;
+        float rayDist = .5f;
         Vector3 origin = transform.position + Vector3.up * rayDist;
         float distance = capsule.bounds.extents.y + rayDist;
 
@@ -69,16 +67,19 @@ public class PlayerMovement : MonoBehaviour
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
         float jumpValue = jumpAction.ReadValue<float>();
         Vector3 move = transform.right * moveValue.x + transform.forward * moveValue.y;
+
         if (isGrounded)
         {
             rb.AddForce(move * moveSensitivity, ForceMode.Force);
-        } else
+        }
+        else
         {
             rb.AddForce(move * moveInAirSensitivity, ForceMode.Force);
         }
-        
+
         if (isGrounded && jumpValue > 0)
         {
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0.0f, rb.linearVelocity.z);
             rb.AddForce(Vector3.up * jumpValue * jumpSensitivity, ForceMode.Impulse);
         }
     }
