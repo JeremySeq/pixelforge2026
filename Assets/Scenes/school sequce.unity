@@ -3199,22 +3199,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3838418741005213125, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3838418741005213125, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.18867922
-      objectReference: {fileID: 0}
-    - target: {fileID: 3838418741005213125, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.18867922
-      objectReference: {fileID: 0}
-    - target: {fileID: 3838418741005213125, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.18867922
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3374,6 +3358,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -893357335896101427, guid: 876481ee83f852b49901155a05d155d5, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: a71a6c255fda72d458682199aed25796, type: 2}
     - target: {fileID: 3250780093056355519, guid: 876481ee83f852b49901155a05d155d5, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3522266

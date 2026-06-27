@@ -1,122 +1,97 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement")]
+    public float moveSpeed = 8f;
+    public float gravity = -12f;
+    public float jumpHeight = 3.0f;
+
+    [Header("Floatiness")]
+    [Range(1f, 20f)] public float groundControl = 10f;
+    [Range(1f, 20f)] public float airControl = 2.5f;
 
     [Header("Abilities")]
-    public Boolean doubleJump = false;
+    public bool canDoubleJump = true;
+    public float doubleJumpHeight = 2.5f;
 
-    [Header("GameObject References")]
+    [Header("Look Settings")]
     public Transform cameraTransform;
-    public CapsuleCollider groundCollider;
+    public float lookSensitivity = 0.3f;
+    private float xRotation = 0f;
 
-    InputActionAsset inputAsset;
-    InputAction moveAction;
-    InputAction jumpAction;
-    InputAction lookAction;
-    Rigidbody rb;
+    private CharacterController controller;
+    private InputActionAsset inputAsset;
+    private InputAction moveAction;
+    private InputAction jumpAction;
+    private InputAction lookAction;
 
-    float moveSensitivity = 55f;
-    float moveInAirSensitivity = 30f;
-    float jumpSensitivity = 20f;
-    float doubleJumpSensitivity = 25f;
-    float lookSensitivity = .3f;
+    private Vector3 currentVelocity;
+    private Vector3 verticalVelocity;
+    private bool isGrounded;
+    private int jumpCount = 0;
 
-    float xRotation = 0f;
-    float upperLookLimit = 90f;
-    float lowerLookLimit = -90f;
-
-    Boolean isGrounded = false;
-    int jumpCount = 0;
-    Boolean jumpPressedLastFrame = false;
-    Boolean jumpPressed = false;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        inputAsset = InputSystem.actions;
+        controller = GetComponent<CharacterController>();
 
+        inputAsset = InputSystem.actions;
         moveAction = inputAsset.FindAction("Move");
         jumpAction = inputAsset.FindAction("Jump");
         lookAction = inputAsset.FindAction("Look");
-
-        rb = GetComponent<Rigidbody>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 lookValue = lookAction.ReadValue<Vector2>();
-
         float mouseX = lookValue.x * lookSensitivity;
         float mouseY = lookValue.y * lookSensitivity;
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, lowerLookLimit, upperLookLimit);
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
         transform.Rotate(Vector3.up * mouseX);
-    }
 
-    void FixedUpdate()
-    {
-        float rayDist = .5f;
-        Vector3 origin = transform.position + Vector3.up * rayDist;
+        isGrounded = controller.isGrounded;
 
-        Collider[] hits = Physics.OverlapCapsule(
-            groundCollider.bounds.center,
-            groundCollider.bounds.center,
-            groundCollider.radius
-        );
-
-        isGrounded = false;
-
-        foreach (Collider hit in hits)
+        if (isGrounded && verticalVelocity.y < 0)
         {
-            if (hit.transform.root != transform)
-            {
-                isGrounded = true;
-                break;
-            }
-        }
-
-        Vector2 moveValue = moveAction.ReadValue<Vector2>();
-
-        Vector3 move = transform.right * moveValue.x + transform.forward * moveValue.y;
-
-        if (isGrounded)
-        {
-            rb.AddForce(move * moveSensitivity, ForceMode.Force);
-        }
-        else
-        {
-            rb.AddForce(move * moveInAirSensitivity, ForceMode.Force);
-        }
-
-        // jumping
-        float jumpValue = jumpAction.ReadValue<float>();
-
-        jumpPressed = jumpAction.ReadValue<float>() > 0.5f;
-
-        if (isGrounded)
-        {
+            verticalVelocity.y = -2f;
             jumpCount = 0;
         }
 
-        if (jumpPressed && !jumpPressedLastFrame && jumpCount < (doubleJump ? 2 : 1))
+        Vector2 moveValue = moveAction.ReadValue<Vector2>();
+        Vector3 targetDirection = transform.right * moveValue.x + transform.forward * moveValue.y;
+        Vector3 targetVelocity = targetDirection * moveSpeed;
+
+        float currentLerpSpeed = isGrounded ? groundControl : airControl;
+
+        currentVelocity = Vector3.Lerp(currentVelocity, targetVelocity, currentLerpSpeed * Time.deltaTime);
+
+        controller.Move(currentVelocity * Time.deltaTime);
+
+        
+        if (jumpAction.WasPressedThisFrame())
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-            rb.AddForce(Vector3.up * (jumpCount == 0 ? jumpSensitivity : doubleJumpSensitivity), ForceMode.Impulse);
-            jumpCount++;
+            if (isGrounded)
+            {
+                verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                jumpCount++;
+            }
+            else if (canDoubleJump && jumpCount < 2)
+            {
+                verticalVelocity.y = Mathf.Sqrt(doubleJumpHeight * -2f * gravity);
+                jumpCount++;
+            }
         }
 
-        jumpPressedLastFrame = jumpPressed;
+        verticalVelocity.y += gravity * Time.deltaTime;
 
-
+        controller.Move(verticalVelocity * Time.deltaTime);
     }
 }
