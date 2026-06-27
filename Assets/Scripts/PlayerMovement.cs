@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
     InputAction lookAction;
     Rigidbody rb;
     public Transform cameraTransform;
-    CapsuleCollider capsule;
+    public CapsuleCollider groundCollider;
+
 
     float moveSensitivity = 100f;
     float moveInAirSensitivity = 50f;
@@ -33,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
         lookAction = inputAsset.FindAction("Look");
 
         rb = GetComponent<Rigidbody>();
-        capsule = GetComponent<CapsuleCollider>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -58,11 +58,23 @@ public class PlayerMovement : MonoBehaviour
     {
         float rayDist = .5f;
         Vector3 origin = transform.position + Vector3.up * rayDist;
-        float distance = capsule.bounds.extents.y + rayDist;
 
-        Debug.DrawRay(origin, Vector3.down * distance, Color.red);
+        Collider[] hits = Physics.OverlapCapsule(
+            groundCollider.bounds.center,
+            groundCollider.bounds.center,
+            groundCollider.radius
+        );
 
-        isGrounded = Physics.Raycast(origin, Vector3.down, distance);
+        isGrounded = false;
+
+        foreach (Collider hit in hits)
+        {
+            if (hit.transform.root != transform)
+            {
+                isGrounded = true;
+                break;
+            }
+        }
 
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
         float jumpValue = jumpAction.ReadValue<float>();
