@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public float slideFriction = .2f;
     [Tooltip("Speed necessary to toggle sliding with crouch button")]
     public float minSlideSpeed = 5f;
-    public float slopeSlideSpeed = 12f;
+    public float slipSpeed = 12f;
 
     [Header("Abilities")]
     public bool canDoubleJump = true;
@@ -145,9 +145,9 @@ public class PlayerMovement : MonoBehaviour
                 
         RaycastHit groundHit;
         float slopeThreshold = 45;
-        bool onSlidable = Physics.Raycast(bottomOfPlayer.position, Vector3.down, out groundHit, dist) && Vector3.Angle(groundHit.normal, Vector3.up) > slopeThreshold && groundHit.collider.CompareTag("slidable");
+        bool onSlippable = Physics.Raycast(bottomOfPlayer.position, Vector3.down, out groundHit, dist) && Vector3.Angle(groundHit.normal, Vector3.up) > slopeThreshold && groundHit.collider.CompareTag("slippable");
 
-        if (onSlidable) // forced slope sliding
+        if (onSlippable) // forced slope sliding
         {
             Vector3 lookDir = cameraTransform.forward;
             // project look onto slope
@@ -161,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
             // rebuild direction from clamped angle
             slideDirection = Quaternion.AngleAxis(angle, groundHit.normal) * slopeDown;
             Debug.DrawRay(transform.position, slideDirection, Color.blue);
-            horizontalVelocity = slideDirection * slopeSlideSpeed;
+            horizontalVelocity = slideDirection * slipSpeed;
             controller.Move(horizontalVelocity * Time.deltaTime);
         }
         else if (isSliding) // ground sliding
@@ -240,10 +240,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 localVelocity = transform.InverseTransformDirection(horizontalVelocity);
         float targetTilt = -localVelocity.x * cameraTiltStrength;
-        if (wallLeft)
+        if (!isGrounded)
+        {
+            if (wallLeft)
             targetTilt -= wallRunTilt;
-        if (wallRight)
-            targetTilt += wallRunTilt;
+            if (wallRight)
+                targetTilt += wallRunTilt;
+        }
         currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * cameraTiltSpeed);
 
         Vector2 lookValue = lookAction.ReadValue<Vector2>();

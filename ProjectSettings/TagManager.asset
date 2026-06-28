@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - notWallrunnable
-  - slidable
   - Checkpoint
+  - slippable
   layers:
   - Default
   - TransparentFX
