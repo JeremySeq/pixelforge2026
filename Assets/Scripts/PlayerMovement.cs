@@ -119,14 +119,15 @@ public class PlayerMovement : MonoBehaviour
 
         // check walls
         float dist = 2.0f;
+        int notPlayerMask = ~LayerMask.GetMask("Player");
         Debug.DrawRay(transform.position, -transform.right * dist, wallLeft ? Color.green : Color.red);
         Debug.DrawRay(transform.position, transform.right * dist, wallRight ? Color.green : Color.red);
-        wallLeft = Physics.Raycast(transform.position, -transform.right, out wallLeftHit, dist);
+        wallLeft = Physics.Raycast(transform.position, -transform.right, out wallLeftHit, dist, notPlayerMask);
         if (wallLeft && wallLeftHit.collider.CompareTag("notWallrunnable"))
         {
             wallLeft = false;
         }
-        wallRight = Physics.Raycast(transform.position, transform.right, out wallRightHit, dist);
+        wallRight = Physics.Raycast(transform.position, transform.right, out wallRightHit, dist, notPlayerMask);
         if (wallRight && wallRightHit.collider.CompareTag("notWallrunnable"))
         {
             wallRight = false;
@@ -150,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
                 
         RaycastHit groundHit;
         float slopeThreshold = 45;
-        bool onSlippable = Physics.Raycast(bottomOfPlayer.position, Vector3.down, out groundHit, dist) && Vector3.Angle(groundHit.normal, Vector3.up) > slopeThreshold && groundHit.collider.CompareTag("slippable");
+        bool onSlippable = Physics.Raycast(bottomOfPlayer.position, Vector3.down, out groundHit, dist, notPlayerMask) && Vector3.Angle(groundHit.normal, Vector3.up) > slopeThreshold && groundHit.collider.CompareTag("slippable");
 
         if (onSlippable) // forced slope sliding
         {
