@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float doubleJumpHeight = 2.5f;
     public bool canWallJump = true;
     public float wallJumpStrength = 10.0f;
+    public float wallRunGravityFactor = 0.5f;
 
     [Header("Camera Settings")]
     public GameObject camera;
@@ -115,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (wallLeft || wallRight)
-            verticalVelocity.y += gravity * Time.deltaTime / 3.0f;
+            verticalVelocity.y += gravity * Time.deltaTime * wallRunGravityFactor;
         else
             verticalVelocity.y += gravity * Time.deltaTime;
 
@@ -125,11 +126,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 localVelocity = transform.InverseTransformDirection(horizontalVelocity);
         float targetTilt = -localVelocity.x * cameraTiltStrength;
-        currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * cameraTiltSpeed);
         if (wallLeft)
-            currentTilt -= wallRunTilt;
+            targetTilt -= wallRunTilt;
         if (wallRight)
-            currentTilt += wallRunTilt;
+            targetTilt += wallRunTilt;
+        currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * cameraTiltSpeed);
 
         Vector2 lookValue = lookAction.ReadValue<Vector2>();
         float mouseX = lookValue.x * lookSensitivity;
