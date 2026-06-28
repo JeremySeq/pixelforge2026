@@ -3293,6 +3293,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3059920078759052235, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
+      objectReference: {fileID: 0}
     - target: {fileID: 3838418741005213125, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
       propertyPath: far clip plane
       value: 100
@@ -3301,6 +3305,14 @@ PrefabInstance:
       propertyPath: volume
       value: 
       objectReference: {fileID: 658492442}
+    - target: {fileID: 7113711221613351029, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7509970990170476900, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
