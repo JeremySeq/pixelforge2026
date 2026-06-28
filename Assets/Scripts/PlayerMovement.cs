@@ -70,8 +70,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isSliding;
     private float slideTimer;
 
-    private AudioSource audioSource;
+    [Header("Sounds")]
+    public AudioSource stepAudioSource;
+    public AudioSource slidingAudioSource;
     private float footstepTimer;
+    public AudioClip[] footstepClips;
+    public AudioClip slidingClip;
+
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -88,7 +94,6 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        audioSource = GetComponent<AudioSource>();
         footstepTimer = 0;
     }
 
@@ -136,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
         wallLeft &= canWallJump;
         wallRight &= canWallJump;
 
-        
+
         // ground movement
         isGrounded = controller.isGrounded;
 
@@ -148,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
         Vector3 targetDirection = transform.right * moveValue.x + transform.forward * moveValue.y;
-                
+
         RaycastHit groundHit;
         float slopeThreshold = 45;
         bool onSlippable = Physics.Raycast(bottomOfPlayer.position, Vector3.down, out groundHit, dist, notPlayerMask) && Vector3.Angle(groundHit.normal, Vector3.up) > slopeThreshold && groundHit.collider.CompareTag("slippable");
@@ -224,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
         Sound(onSlippable);
 
         updateCameraRotation();
-        
+
     }
 
     public void ResetVelocity()
@@ -237,7 +242,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 currentPosition = target.transform.position;
         Vector3 directionToTarget = currentPosition - pivot;
-        float scaleFactor = newScale.x / target.transform.localScale.x; 
+        float scaleFactor = newScale.x / target.transform.localScale.x;
         Vector3 targetPositionPostScale = pivot + (directionToTarget * scaleFactor);
         target.transform.localScale = newScale;
         target.transform.position = targetPositionPostScale;
@@ -250,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isGrounded)
         {
             if (wallLeft)
-            targetTilt -= wallRunTilt;
+                targetTilt -= wallRunTilt;
             if (wallRight)
                 targetTilt += wallRunTilt;
         }
@@ -268,15 +273,31 @@ public class PlayerMovement : MonoBehaviour
 
     void Sound(bool onSlippable)
     {
+        Debug.Log(slidingAudioSource.isPlaying);
+
         footstepTimer -= Time.deltaTime;
 
         if ((controller.isGrounded || wallLeft || wallRight) && !(isSliding || onSlippable) && horizontalVelocity.magnitude > 0.1f)
         {
             if (footstepTimer <= 0f)
             {
-                audioSource.PlayOneShot(audioSource.clip);
+                stepAudioSource.PlayOneShot(footstepClips[Random.Range(0, footstepClips.Length)]);
                 float footstepInterval = Mathf.Lerp(0.6f, 0.25f, horizontalVelocity.magnitude / moveSpeed);
                 footstepTimer = footstepInterval;
+            }
+        }
+        else if (isSliding || onSlippable)
+        {
+            if (!slidingAudioSource.isPlaying)
+            {
+                slidingAudioSource.PlayOneShot(slidingClip);
+            }
+        }
+        else
+        {
+            if (slidingAudioSource.isPlaying)
+            {
+                slidingAudioSource.Stop();
             }
         }
     }
