@@ -140,4 +140,10 @@ public class PlayerMovement : MonoBehaviour
         cameraTransform.localRotation = Quaternion.Euler(lookRotation.x, 0.0f, currentTilt);
         transform.Rotate(Vector3.up * mouseX);
     }
+
+    public void ResetVelocity()
+    {
+        horizontalVelocity = Vector3.zero;
+        verticalVelocity = Vector3.zero;
+    }
 }

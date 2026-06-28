@@ -12,5 +12,6 @@ public class ChaserMovement : MonoBehaviour
         Vector3 target = player.position;
 
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        transform.LookAt(player);
     }
 }

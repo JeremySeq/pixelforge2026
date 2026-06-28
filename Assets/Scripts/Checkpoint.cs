@@ -3,12 +3,15 @@ using UnityEngine.Rendering;
 
 public class Checkpoint : MonoBehaviour
 {
-    Vector3 checkpoint = new Vector3(-3.44f, 6.8f, -22.2f);
+    [Header("Spawn")]
+    public Vector3 spawn = new Vector3(-3.44f, 6.8f, -22.2f);
+
+    private PlayerMovement playerMovementController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        playerMovementController = transform.GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -17,7 +20,8 @@ public class Checkpoint : MonoBehaviour
         if (transform.position.y < -75f)
         {
             GetComponent<CharacterController>().enabled = false;
-            transform.position = checkpoint;
+            transform.position = spawn;
+            playerMovementController.ResetVelocity();
             GetComponent<CharacterController>().enabled = true;
         }
     }
