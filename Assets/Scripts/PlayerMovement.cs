@@ -17,12 +17,18 @@ public class PlayerMovement : MonoBehaviour
     public bool canDoubleJump = true;
     public float doubleJumpHeight = 2.5f;
     public bool canWallJump = true;
-    public float wallJumpStrength = 50.0f;
+    public float wallJumpStrength = 10.0f;
 
-    [Header("Look Settings")]
-    public Transform cameraTransform;
+    [Header("Camera Settings")]
+    public GameObject camera;
     public float lookSensitivity = 0.3f;
-    private float xRotation = 0f;
+    private Vector3 lookRotation;
+    private Transform cameraTransform;
+    private Camera cameraCamera;
+    public float cameraTiltStrength = 2.0f;
+    public float cameraTiltSpeed = 2.0f;
+    public float wallRunTilt = 1.0f;
+    private float currentTilt = 0.0f;
 
     private CharacterController controller;
     private InputActionAsset inputAsset;
@@ -30,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction jumpAction;
     private InputAction lookAction;
 
-    private Vector3 currentVelocity;
+    private Vector3 horizontalVelocity;
     private Vector3 verticalVelocity;
     private bool isGrounded;
     private int jumpCount = 0;
@@ -49,6 +55,9 @@ public class PlayerMovement : MonoBehaviour
         jumpAction = inputAsset.FindAction("Jump");
         lookAction = inputAsset.FindAction("Look");
 
+        cameraTransform = camera.transform;
+        cameraCamera = camera.GetComponent<Camera>();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -60,19 +69,10 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(transform.position, transform.right * dist, wallRight ? Color.green : Color.red);
         wallLeft = Physics.Raycast(transform.position, -transform.right, out wallLeftHit, dist);
         wallRight = Physics.Raycast(transform.position, transform.right, out wallRightHit, dist);
-        Debug.Log(wallLeft);
-        Debug.Log(wallRight);
+        // Debug.Log(wallLeft);
+        // Debug.Log(wallRight);
         wallLeft &= canWallJump;
         wallRight &= canWallJump;
-
-        Vector2 lookValue = lookAction.ReadValue<Vector2>();
-        float mouseX = lookValue.x * lookSensitivity;
-        float mouseY = lookValue.y * lookSensitivity;
-
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        transform.Rotate(Vector3.up * mouseX);
 
         isGrounded = controller.isGrounded;
 
@@ -88,23 +88,24 @@ public class PlayerMovement : MonoBehaviour
 
         float currentLerpSpeed = isGrounded ? groundControl : airControl;
 
-        currentVelocity = Vector3.Lerp(currentVelocity, targetVelocity, currentLerpSpeed * Time.deltaTime);
-        controller.Move(currentVelocity * Time.deltaTime);
+        horizontalVelocity = Vector3.Lerp(horizontalVelocity, targetVelocity, currentLerpSpeed * Time.deltaTime);
+        controller.Move(horizontalVelocity * Time.deltaTime);
 
         if (jumpAction.WasPressedThisFrame())
         {
             if (isGrounded || wallRight || wallLeft)
             {
-                verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                float wallRunBalancing = 1.0f;
+                if (wallLeft || wallRight)
+                    wallRunBalancing = 0.5f;
+
+                verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity * wallRunBalancing);
                 jumpCount++;
+
                 if (wallRight)
-                {
-                    currentVelocity += -transform.right * wallJumpStrength;
-                }
+                    horizontalVelocity += -transform.right * wallJumpStrength;
                 if (wallLeft)
-                {
-                    currentVelocity += transform.right * wallJumpStrength;
-                }
+                    horizontalVelocity += transform.right * wallJumpStrength;
             }
             else if (canDoubleJump && jumpCount < 2)
             {
@@ -114,14 +115,29 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (wallLeft || wallRight)
-        {
             verticalVelocity.y += gravity * Time.deltaTime / 3.0f;
-        }
         else
-        {
             verticalVelocity.y += gravity * Time.deltaTime;
-        }
 
         controller.Move(verticalVelocity * Time.deltaTime);
+
+        // camera rotation
+
+        Vector3 localVelocity = transform.InverseTransformDirection(horizontalVelocity);
+        float targetTilt = -localVelocity.x * cameraTiltStrength;
+        currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * cameraTiltSpeed);
+        if (wallLeft)
+            currentTilt -= wallRunTilt;
+        if (wallRight)
+            currentTilt += wallRunTilt;
+
+        Vector2 lookValue = lookAction.ReadValue<Vector2>();
+        float mouseX = lookValue.x * lookSensitivity;
+        float mouseY = lookValue.y * lookSensitivity;
+
+        lookRotation.x -= mouseY;
+        lookRotation.x = Mathf.Clamp(lookRotation.x, -90f, 90f);
+        cameraTransform.localRotation = Quaternion.Euler(lookRotation.x, 0.0f, currentTilt);
+        transform.Rotate(Vector3.up * mouseX);
     }
 }
