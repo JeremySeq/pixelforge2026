@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2149651544929277717}
   - component: {fileID: 4912476174252738264}
-  - component: {fileID: 2360480269565521662}
   - component: {fileID: 5972580048184857736}
   - component: {fileID: 5141312375327992022}
   - component: {fileID: 5065916262090634444}
@@ -63,33 +62,6 @@ CapsuleCollider:
   m_Height: 1.9593639
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2360480269565521662
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3059920078759052235}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 2
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!143 &5972580048184857736
 CharacterController:
   m_ObjectHideFlags: 0
@@ -191,6 +163,8 @@ MonoBehaviour:
   airControl: 2.5
   canDoubleJump: 1
   doubleJumpHeight: 3
+  canWallJump: 1
+  wallJumpStrength: 10
   cameraTransform: {fileID: 4107209852364046686}
   lookSensitivity: 0.3
 --- !u!1 &7113711221613351029
@@ -403,7 +377,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 100
   orthographic: 0

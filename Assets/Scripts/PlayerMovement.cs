@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Abilities")]
     public bool canDoubleJump = true;
     public float doubleJumpHeight = 2.5f;
+    public bool canWallJump = true;
+    public float wallJumpStrength = 50.0f;
 
     [Header("Look Settings")]
     public Transform cameraTransform;
@@ -33,6 +35,11 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private int jumpCount = 0;
 
+    private RaycastHit wallLeftHit;
+    private RaycastHit wallRightHit;
+    private bool wallLeft;
+    private bool wallRight;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -48,6 +55,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        float dist = 2.0f;
+        Debug.DrawRay(transform.position, -transform.right * dist, wallLeft ? Color.green : Color.red);
+        Debug.DrawRay(transform.position, transform.right * dist, wallRight ? Color.green : Color.red);
+        wallLeft = Physics.Raycast(transform.position, -transform.right, out wallLeftHit, dist);
+        wallRight = Physics.Raycast(transform.position, transform.right, out wallRightHit, dist);
+        Debug.Log(wallLeft);
+        Debug.Log(wallRight);
+        wallLeft &= canWallJump;
+        wallRight &= canWallJump;
+
         Vector2 lookValue = lookAction.ReadValue<Vector2>();
         float mouseX = lookValue.x * lookSensitivity;
         float mouseY = lookValue.y * lookSensitivity;
@@ -59,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
         isGrounded = controller.isGrounded;
 
-        if (isGrounded && verticalVelocity.y < 0)
+        if ((isGrounded || wallRight || wallLeft) && verticalVelocity.y <= 0)
         {
             verticalVelocity.y = -2f;
             jumpCount = 0;
@@ -72,16 +89,22 @@ public class PlayerMovement : MonoBehaviour
         float currentLerpSpeed = isGrounded ? groundControl : airControl;
 
         currentVelocity = Vector3.Lerp(currentVelocity, targetVelocity, currentLerpSpeed * Time.deltaTime);
-
         controller.Move(currentVelocity * Time.deltaTime);
 
-        
         if (jumpAction.WasPressedThisFrame())
         {
-            if (isGrounded)
+            if (isGrounded || wallRight || wallLeft)
             {
                 verticalVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
                 jumpCount++;
+                if (wallRight)
+                {
+                    currentVelocity += -transform.right * wallJumpStrength;
+                }
+                if (wallLeft)
+                {
+                    currentVelocity += transform.right * wallJumpStrength;
+                }
             }
             else if (canDoubleJump && jumpCount < 2)
             {
@@ -90,7 +113,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        verticalVelocity.y += gravity * Time.deltaTime;
+        if (wallLeft || wallRight)
+        {
+            verticalVelocity.y += gravity * Time.deltaTime / 3.0f;
+        }
+        else
+        {
+            verticalVelocity.y += gravity * Time.deltaTime;
+        }
 
         controller.Move(verticalVelocity * Time.deltaTime);
     }
