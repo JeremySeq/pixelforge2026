@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6b4e5b7a2f3f94b8366c9d6f187c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 10
+  moveSpeed: 15
   gravity: -50
   jumpHeight: 5
   groundControl: 10
@@ -166,11 +166,12 @@ MonoBehaviour:
   doubleJumpHeight: 2.5
   canWallJump: 1
   wallJumpStrength: 15
+  wallRunGravityFactor: 0.5
   camera: {fileID: 8392919823229016669}
   lookSensitivity: 0.3
-  cameraTiltStrength: 2
+  cameraTiltStrength: 1
   cameraTiltSpeed: 5
-  wallRunTilt: 1
+  wallRunTilt: 20
 --- !u!114 &4317860805981961123
 MonoBehaviour:
   m_ObjectHideFlags: 0
