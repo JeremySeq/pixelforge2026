@@ -163,6 +163,8 @@ MonoBehaviour:
   airControl: 2.5
   canDoubleJump: 1
   doubleJumpHeight: 3
+  canWallJump: 1
+  wallJumpStrength: 10
   cameraTransform: {fileID: 4107209852364046686}
   lookSensitivity: 0.3
 --- !u!1 &7113711221613351029
@@ -376,7 +378,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 100
   orthographic: 0
