@@ -1295,6 +1295,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: a laptop
       objectReference: {fileID: 0}
+    - target: {fileID: 1316731507923750, guid: ec15f5ae191975f4d8de236356aaec36, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4525299494038442, guid: ec15f5ae191975f4d8de236356aaec36, type: 3}
       propertyPath: m_LocalScale.x
       value: 10.222266
@@ -2407,6 +2411,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: a door1
       objectReference: {fileID: 0}
+    - target: {fileID: 1457838970446620, guid: 54fc4a62ccb7e304f910c5444e778f6b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4895514858376750, guid: 54fc4a62ccb7e304f910c5444e778f6b, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3522266
@@ -2562,6 +2570,10 @@ PrefabInstance:
     - target: {fileID: 1165130320748170, guid: 4bc798f368a5f214ba2ad9cc17bc9b80, type: 3}
       propertyPath: m_Name
       value: fire1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165130320748170, guid: 4bc798f368a5f214ba2ad9cc17bc9b80, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4405267496668470, guid: 4bc798f368a5f214ba2ad9cc17bc9b80, type: 3}
       propertyPath: m_LocalScale.x
@@ -2870,6 +2882,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: computer
       objectReference: {fileID: 0}
+    - target: {fileID: 1077917156098284, guid: 95b7030fe576ba84e930b6af82eb2738, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4677248624428304, guid: 95b7030fe576ba84e930b6af82eb2738, type: 3}
       propertyPath: m_LocalScale.x
       value: 8.926157
@@ -3033,7 +3049,7 @@ Transform:
   m_GameObject: {fileID: 1137215760}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.999, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3123,6 +3139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: locker_1
       objectReference: {fileID: 0}
+    - target: {fileID: 1553475708589566, guid: 4af7da65169b48c47b3b86e7d6323744, type: 3}
+      propertyPath: m_TagString
+      value: slidable
+      objectReference: {fileID: 0}
     - target: {fileID: 4169223047241396, guid: 4af7da65169b48c47b3b86e7d6323744, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.0622196
@@ -3207,6 +3227,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -893357335896101427, guid: 876481ee83f852b49901155a05d155d5, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3250780093056355519, guid: 876481ee83f852b49901155a05d155d5, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.6757336
@@ -3263,6 +3287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bus (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3250780093056716959, guid: 876481ee83f852b49901155a05d155d5, type: 3}
+      propertyPath: m_TagString
+      value: slidable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3281,6 +3309,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 391651810562040125, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
+      propertyPath: slideFriction
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 391651810562040125, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
       propertyPath: bottomOfPlayer
       value: 
       objectReference: {fileID: 1137215761}
@@ -3292,9 +3324,9 @@ PrefabInstance:
       propertyPath: crouchingHeight
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2149651544929277717, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
+    - target: {fileID: 391651810562040125, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
+      propertyPath: slopeSlideSpeed
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2149651544929277717, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3340,26 +3372,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3059920078759052235, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
-      propertyPath: m_TagString
-      value: notWallrunnable
-      objectReference: {fileID: 0}
-    - target: {fileID: 3838418741005213125, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
-      propertyPath: far clip plane
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 4317860805981961123, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
       propertyPath: volume
       value: 
       objectReference: {fileID: 658492442}
     - target: {fileID: 5972580048184857736, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
-      propertyPath: m_Height
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5972580048184857736, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
-      propertyPath: m_Center.y
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: d4fd43b5271d4844cbbd06056d291e9e, type: 2}
     - target: {fileID: 7113711221613351029, guid: 0caba566cc8b7ac49ad424539b37dc43, type: 3}
       propertyPath: m_TagString
       value: notWallrunnable
