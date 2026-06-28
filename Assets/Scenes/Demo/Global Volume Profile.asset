@@ -79,11 +79,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.WhiteBalance
   active: 1
   temperature:
-    m_OverrideState: 1
-    m_Value: 0
+    m_OverrideState: 0
+    m_Value: 26
   tint:
-    m_OverrideState: 1
-    m_Value: 0
+    m_OverrideState: 0
+    m_Value: 22
 --- !u!114 &-6700654058597639881
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -174,10 +174,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 0.4
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.298
   rounded:
     m_OverrideState: 1
     m_Value: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 100
 --- !u!114 &1017348088169698046
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -584,22 +584,22 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   greenOutRedIn:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   greenOutGreenIn:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 100
   greenOutBlueIn:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   blueOutRedIn:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   blueOutGreenIn:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   blueOutBlueIn:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 100
 --- !u!114 &1877898308288620249
 MonoBehaviour:
@@ -712,7 +712,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -0.2
   xMultiplier:
     m_OverrideState: 1
     m_Value: 1
@@ -789,10 +789,10 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   response:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 0.5
   texture:
     m_OverrideState: 1
     m_Value: {fileID: 0}
