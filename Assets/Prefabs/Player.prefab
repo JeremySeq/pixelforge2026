@@ -133,16 +133,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6b4e5b7a2f3f94b8366c9d6f187c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  bottomOfPlayer: {fileID: 0}
+  bottomOfPlayer: {fileID: 8329690673827807172}
   moveSpeed: 15
   gravity: -50
   jumpHeight: 5
   groundControl: 10
   airControl: 2.5
-  standingHeight: 2
-  crouchingHeight: 1
+  standingHeight: 1
+  crouchingHeight: 0.5
   crouchSpeed: 4
   heightLerpSpeed: 10
+  slideSpeed: 20
+  slideDuration: 0.8
+  slideFriction: 0.2
+  minSlideSpeed: 5
+  slopeSlideSpeed: 12
   canDoubleJump: 1
   doubleJumpHeight: 2.5
   canWallJump: 1
