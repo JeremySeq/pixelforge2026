@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
@@ -69,7 +70,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isSliding;
     private float slideTimer;
 
-
+    private AudioSource audioSource;
+    private float footstepTimer;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -85,6 +87,9 @@ public class PlayerMovement : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        audioSource = GetComponent<AudioSource>();
+        footstepTimer = 0;
     }
 
     void Update()
@@ -215,6 +220,7 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(verticalVelocity * Time.deltaTime);
 
+        Sound(onSlippable);
 
         updateCameraRotation();
         
@@ -257,5 +263,20 @@ public class PlayerMovement : MonoBehaviour
         lookRotation.x = Mathf.Clamp(lookRotation.x, -90f, 90f);
         cameraTransform.localRotation = Quaternion.Euler(lookRotation.x, 0.0f, currentTilt);
         transform.Rotate(Vector3.up * mouseX);
+    }
+
+    void Sound(bool onSlippable)
+    {
+        footstepTimer -= Time.deltaTime;
+
+        if ((controller.isGrounded || wallLeft || wallRight) && !(isSliding || onSlippable) && horizontalVelocity.magnitude > 0.1f)
+        {
+            if (footstepTimer <= 0f)
+            {
+                audioSource.PlayOneShot(audioSource.clip);
+                float footstepInterval = Mathf.Lerp(0.6f, 0.25f, horizontalVelocity.magnitude / moveSpeed);
+                footstepTimer = footstepInterval;
+            }
+        }
     }
 }
