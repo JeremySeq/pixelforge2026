@@ -11,7 +11,7 @@ public class Checkpoint : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerMovementController = transform.GetComponent<PlayerMovement>();
+        playerMovementController = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -23,6 +23,14 @@ public class Checkpoint : MonoBehaviour
             transform.position = spawn;
             playerMovementController.ResetVelocity();
             GetComponent<CharacterController>().enabled = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Checkpoint")
+        {
+            spawn = other.transform.position;
         }
     }
 }
