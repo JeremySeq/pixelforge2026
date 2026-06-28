@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5141312375327992022}
   - component: {fileID: 5065916262090634444}
   - component: {fileID: 391651810562040125}
+  - component: {fileID: 4317860805981961123}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -103,7 +104,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3059920078759052235}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -167,6 +168,18 @@ MonoBehaviour:
   wallJumpStrength: 10
   cameraTransform: {fileID: 4107209852364046686}
   lookSensitivity: 0.3
+--- !u!114 &4317860805981961123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059920078759052235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66c4a448681a09746ba53a8be63dfc12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Checkpoint
 --- !u!1 &7113711221613351029
 GameObject:
   m_ObjectHideFlags: 0
