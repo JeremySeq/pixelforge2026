@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 horizontalVelocity;
     private Vector3 verticalVelocity;
+
     private bool isGrounded;
     private int jumpCount = 0;
 
@@ -70,8 +71,6 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(transform.position, transform.right * dist, wallRight ? Color.green : Color.red);
         wallLeft = Physics.Raycast(transform.position, -transform.right, out wallLeftHit, dist);
         wallRight = Physics.Raycast(transform.position, transform.right, out wallRightHit, dist);
-        // Debug.Log(wallLeft);
-        // Debug.Log(wallRight);
         wallLeft &= canWallJump;
         wallRight &= canWallJump;
 
