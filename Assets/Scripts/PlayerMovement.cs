@@ -70,7 +70,19 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(transform.position, -transform.right * dist, wallLeft ? Color.green : Color.red);
         Debug.DrawRay(transform.position, transform.right * dist, wallRight ? Color.green : Color.red);
         wallLeft = Physics.Raycast(transform.position, -transform.right, out wallLeftHit, dist);
+
+        if (wallLeft && wallLeftHit.collider.CompareTag("notWallrunnable"))
+        {
+            wallLeft = false;
+        }
+
         wallRight = Physics.Raycast(transform.position, transform.right, out wallRightHit, dist);
+
+        if (wallRight && wallRightHit.collider.CompareTag("notWallrunnable"))
+        {
+            wallRight = false;
+        }
+        
         wallLeft &= canWallJump;
         wallRight &= canWallJump;
 

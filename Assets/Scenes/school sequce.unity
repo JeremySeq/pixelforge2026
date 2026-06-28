@@ -251,6 +251,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: chair1
       objectReference: {fileID: 0}
+    - target: {fileID: 1844930292423774, guid: 991e8973513e2ad408232c1afeb3a9df, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
+      objectReference: {fileID: 0}
     - target: {fileID: 4558593196022300, guid: 991e8973513e2ad408232c1afeb3a9df, type: 3}
       propertyPath: m_LocalScale.x
       value: -27.181131
@@ -368,6 +372,10 @@ PrefabInstance:
     - target: {fileID: 1486217861104600, guid: 70c302f8c134149459c53486998e3785, type: 3}
       propertyPath: m_Name
       value: book12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1486217861104600, guid: 70c302f8c134149459c53486998e3785, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
       objectReference: {fileID: 0}
     - target: {fileID: 4507241506528952, guid: 70c302f8c134149459c53486998e3785, type: 3}
       propertyPath: m_LocalScale.x
@@ -579,6 +587,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: table2 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1449411819928282, guid: 91dc1ab115d03f04b930f9e619fb953f, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
+      objectReference: {fileID: 0}
     - target: {fileID: 4653498214664590, guid: 91dc1ab115d03f04b930f9e619fb953f, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.07835762
@@ -697,6 +709,10 @@ PrefabInstance:
     - target: {fileID: 1797056699924840, guid: 07f95da47d340af46b603c05bffc1cde, type: 3}
       propertyPath: m_Name
       value: showcase (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1797056699924840, guid: 07f95da47d340af46b603c05bffc1cde, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
       objectReference: {fileID: 0}
     - target: {fileID: 4972961700633766, guid: 07f95da47d340af46b603c05bffc1cde, type: 3}
       propertyPath: m_LocalScale.x
@@ -840,6 +856,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: table2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1449411819928282, guid: 91dc1ab115d03f04b930f9e619fb953f, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
+      objectReference: {fileID: 0}
     - target: {fileID: 4653498214664590, guid: 91dc1ab115d03f04b930f9e619fb953f, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.07835762
@@ -921,6 +941,10 @@ PrefabInstance:
     - target: {fileID: 1948190051743874, guid: 924e5835feca5774baf83fefc095dad6, type: 3}
       propertyPath: m_Name
       value: book
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948190051743874, guid: 924e5835feca5774baf83fefc095dad6, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
       objectReference: {fileID: 0}
     - target: {fileID: 4045696219899550, guid: 924e5835feca5774baf83fefc095dad6, type: 3}
       propertyPath: m_LocalScale.x
@@ -1004,6 +1028,10 @@ PrefabInstance:
     - target: {fileID: 1449411819928282, guid: 91dc1ab115d03f04b930f9e619fb953f, type: 3}
       propertyPath: m_Name
       value: table2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449411819928282, guid: 91dc1ab115d03f04b930f9e619fb953f, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
       objectReference: {fileID: 0}
     - target: {fileID: 4653498214664590, guid: 91dc1ab115d03f04b930f9e619fb953f, type: 3}
       propertyPath: m_LocalScale.x
@@ -1177,6 +1205,10 @@ PrefabInstance:
     - target: {fileID: 1384666430171102, guid: e71f88c62ec6ec749b9da3c66033409a, type: 3}
       propertyPath: m_Name
       value: book4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384666430171102, guid: e71f88c62ec6ec749b9da3c66033409a, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
       objectReference: {fileID: 0}
     - target: {fileID: 4467140028628036, guid: e71f88c62ec6ec749b9da3c66033409a, type: 3}
       propertyPath: m_LocalScale.x
@@ -1555,6 +1587,10 @@ PrefabInstance:
     - target: {fileID: 1153582326421434, guid: 6e8ee28b611f0274dba1617e8888f8ec, type: 3}
       propertyPath: m_Name
       value: rack1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1153582326421434, guid: 6e8ee28b611f0274dba1617e8888f8ec, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
       objectReference: {fileID: 0}
     - target: {fileID: 4188208654106574, guid: 6e8ee28b611f0274dba1617e8888f8ec, type: 3}
       propertyPath: m_LocalScale.x
@@ -2298,6 +2334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wall
       objectReference: {fileID: 0}
+    - target: {fileID: 1471179749966258, guid: d8553808ed1fd2a41982e26a8f099b9a, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
+      objectReference: {fileID: 0}
     - target: {fileID: 4249889236172922, guid: d8553808ed1fd2a41982e26a8f099b9a, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0755869
@@ -2907,6 +2947,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1471179749966258, guid: d8553808ed1fd2a41982e26a8f099b9a, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
+      objectReference: {fileID: 0}
     - target: {fileID: 4249889236172922, guid: d8553808ed1fd2a41982e26a8f099b9a, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.0755869
@@ -3274,6 +3318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: showcase
       objectReference: {fileID: 0}
+    - target: {fileID: 1797056699924840, guid: 07f95da47d340af46b603c05bffc1cde, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
+      objectReference: {fileID: 0}
     - target: {fileID: 4972961700633766, guid: 07f95da47d340af46b603c05bffc1cde, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.078357615
@@ -3350,6 +3398,10 @@ PrefabInstance:
     - target: {fileID: 1457838970446620, guid: 54fc4a62ccb7e304f910c5444e778f6b, type: 3}
       propertyPath: m_Name
       value: a door1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1457838970446620, guid: 54fc4a62ccb7e304f910c5444e778f6b, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
       objectReference: {fileID: 0}
     - target: {fileID: 4895514858376750, guid: 54fc4a62ccb7e304f910c5444e778f6b, type: 3}
       propertyPath: m_LocalScale.x
@@ -3552,6 +3604,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: book (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1948190051743874, guid: 924e5835feca5774baf83fefc095dad6, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
+      objectReference: {fileID: 0}
     - target: {fileID: 4045696219899550, guid: 924e5835feca5774baf83fefc095dad6, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.6635
@@ -3636,6 +3692,10 @@ PrefabInstance:
     - target: {fileID: 1449411819928282, guid: 91dc1ab115d03f04b930f9e619fb953f, type: 3}
       propertyPath: m_Name
       value: table2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449411819928282, guid: 91dc1ab115d03f04b930f9e619fb953f, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
       objectReference: {fileID: 0}
     - target: {fileID: 4653498214664590, guid: 91dc1ab115d03f04b930f9e619fb953f, type: 3}
       propertyPath: m_LocalScale.x
@@ -3831,6 +3891,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: showcase (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1797056699924840, guid: 07f95da47d340af46b603c05bffc1cde, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
+      objectReference: {fileID: 0}
     - target: {fileID: 4972961700633766, guid: 07f95da47d340af46b603c05bffc1cde, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.078357615
@@ -3912,6 +3976,10 @@ PrefabInstance:
     - target: {fileID: 590543240985521223, guid: b59a9c8244569884ea37036b2c96f95e, type: 3}
       propertyPath: m_Name
       value: Pencil
+      objectReference: {fileID: 0}
+    - target: {fileID: 590543240985521223, guid: b59a9c8244569884ea37036b2c96f95e, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
       objectReference: {fileID: 0}
     - target: {fileID: 590543240985620583, guid: b59a9c8244569884ea37036b2c96f95e, type: 3}
       propertyPath: m_LocalScale.x
@@ -4048,6 +4116,10 @@ PrefabInstance:
     - target: {fileID: 1183540044900982, guid: 0c6751314cb92ff49980ac423b66ecfa, type: 3}
       propertyPath: m_Name
       value: book3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1183540044900982, guid: 0c6751314cb92ff49980ac423b66ecfa, type: 3}
+      propertyPath: m_TagString
+      value: notWallrunnable
       objectReference: {fileID: 0}
     - target: {fileID: 4599306457989890, guid: 0c6751314cb92ff49980ac423b66ecfa, type: 3}
       propertyPath: m_LocalScale.x
