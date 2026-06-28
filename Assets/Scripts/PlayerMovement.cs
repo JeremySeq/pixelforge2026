@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
+
+    public Transform bottomOfPlayer;
+
     [Header("Movement")]
     public float moveSpeed = 8f;
     public float gravity = -12f;
@@ -12,6 +15,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Floatiness")]
     [Range(1f, 20f)] public float groundControl = 10f;
     [Range(1f, 20f)] public float airControl = 2.5f;
+
+    [Header("Crouch")]
+    public float standingHeight = 1f;
+    public float crouchingHeight = .5f;
+    public float crouchSpeed = 4f;
+    public float heightLerpSpeed = 10f;
 
     [Header("Abilities")]
     public bool canDoubleJump = true;
@@ -36,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction lookAction;
+    private InputAction crouchAction;
 
     private Vector3 horizontalVelocity;
     private Vector3 verticalVelocity;
@@ -47,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit wallRightHit;
     private bool wallLeft;
     private bool wallRight;
+    private bool isCrouching;
 
     void Start()
     {
@@ -56,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         moveAction = inputAsset.FindAction("Move");
         jumpAction = inputAsset.FindAction("Jump");
         lookAction = inputAsset.FindAction("Look");
+        crouchAction = inputAsset.FindAction("Crouch");
 
         cameraTransform = camera.transform;
         cameraCamera = camera.GetComponent<Camera>();
@@ -66,6 +78,20 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
+        // crouching
+        isCrouching = crouchAction.IsPressed();
+        float targetHeight = isCrouching ? crouchingHeight : standingHeight;
+        float currentHeight = this.gameObject.transform.localScale.y;
+        float newHeight = Mathf.Lerp(
+            currentHeight,
+            targetHeight,
+            Time.deltaTime * heightLerpSpeed
+        );
+        // scale using bottom of player as pivot
+        ScaleAroundPivot(gameObject, bottomOfPlayer.position, new Vector3(gameObject.transform.localScale.x, newHeight, gameObject.transform.localScale.z));
+
+        
         float dist = 2.0f;
         Debug.DrawRay(transform.position, -transform.right * dist, wallLeft ? Color.green : Color.red);
         Debug.DrawRay(transform.position, transform.right * dist, wallRight ? Color.green : Color.red);
@@ -82,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
         {
             wallRight = false;
         }
-        
+
         wallLeft &= canWallJump;
         wallRight &= canWallJump;
 
@@ -96,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
         Vector3 targetDirection = transform.right * moveValue.x + transform.forward * moveValue.y;
-        Vector3 targetVelocity = targetDirection * moveSpeed;
+        Vector3 targetVelocity = targetDirection * (isCrouching ? crouchSpeed : moveSpeed);
 
         float currentLerpSpeed = isGrounded ? groundControl : airControl;
 
@@ -157,5 +183,15 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalVelocity = Vector3.zero;
         verticalVelocity = Vector3.zero;
+    }
+
+    public void ScaleAroundPivot(GameObject target, Vector3 pivot, Vector3 newScale)
+    {
+        Vector3 currentPosition = target.transform.position;
+        Vector3 directionToTarget = currentPosition - pivot;
+        float scaleFactor = newScale.x / target.transform.localScale.x; 
+        Vector3 targetPositionPostScale = pivot + (directionToTarget * scaleFactor);
+        target.transform.localScale = newScale;
+        target.transform.position = targetPositionPostScale;
     }
 }
