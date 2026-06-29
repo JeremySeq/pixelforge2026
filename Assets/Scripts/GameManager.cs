@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
                 RenderSettings.ambientLight = Color.black;
                 RenderSettings.ambientIntensity = 0.0f;
                 break;
+            case "Scene 1_2":
+                cameraData.SetRenderer(rendererNoFogIndex);
+                Debug.Log("ran Scene 1_2! renderer set to 1");
+                break;
             default:
                 cameraData.SetRenderer(rendererNoFogIndex);
                 break;
