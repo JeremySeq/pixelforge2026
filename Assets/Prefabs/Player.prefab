@@ -177,9 +177,9 @@ MonoBehaviour:
   heightLerpSpeed: 10
   slideSpeed: 30
   slideDuration: 0.8
-  slideFriction: 50
+  slideFriction: 30
   minSlideSpeed: 5
-  slipSpeed: 12
+  slipSpeed: 20
   canDoubleJump: 1
   doubleJumpHeight: 2.5
   canWallJump: 1
@@ -190,6 +190,7 @@ MonoBehaviour:
   cameraTiltStrength: 1
   cameraTiltSpeed: 5
   wallRunTilt: 20
+  chaser: {fileID: 0}
   stepAudioSource: {fileID: -1461438877646451922}
   slidingAudioSource: {fileID: 2921765142190988209}
   footstepClips:
@@ -471,7 +472,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 75
+  far clip plane: 200
   field of view: 100
   orthographic: 0
   orthographic size: 5
