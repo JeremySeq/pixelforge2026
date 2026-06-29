@@ -49,6 +49,9 @@ public class PlayerMovement : MonoBehaviour
     public float wallRunTilt = 1.0f;
     private float currentTilt = 0.0f;
 
+    [Header("Chaser")]
+    public GameObject chaser;
+
     private CharacterController controller;
     private InputActionAsset inputAsset;
     private InputAction moveAction;
@@ -246,8 +249,9 @@ public class PlayerMovement : MonoBehaviour
 
         Sound(onSlippable);
 
-        updateCameraRotation();
+        UpdateCameraRotation();
 
+        ChaserCameraEffects();
     }
 
     public void ResetVelocity()
@@ -266,7 +270,7 @@ public class PlayerMovement : MonoBehaviour
         target.transform.position = targetPositionPostScale;
     }
 
-    private void updateCameraRotation()
+    private void UpdateCameraRotation()
     {
         Vector3 localVelocity = transform.InverseTransformDirection(horizontalVelocity);
         float targetTilt = -localVelocity.x * cameraTiltStrength;
@@ -318,5 +322,10 @@ public class PlayerMovement : MonoBehaviour
                 slidingAudioSource.Stop();
             }
         }
+    }
+
+    void ChaserCameraEffects()
+    {
+
     }
 }

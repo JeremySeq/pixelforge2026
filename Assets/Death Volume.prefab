@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.Volume
   m_IsGlobal: 0
   priority: 1
-  blendDistance: 10
+  blendDistance: 20
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 430922566db75b443a7d3da6a4e32132, type: 2}
 --- !u!65 &6918118724244340357
