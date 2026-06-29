@@ -45,7 +45,7 @@ Light:
   serializedVersion: 13
   m_Type: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 7
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 112.8829
   m_InnerSpotAngle: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e82bc7061a697458c4668d2a2b5858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  minIntensity: 7
-  maxIntensity: 10
+  minIntensity: 0
+  maxIntensity: 0
   minDelay: 0.05
   maxDelay: 0.2
