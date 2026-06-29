@@ -250,8 +250,6 @@ public class PlayerMovement : MonoBehaviour
         Sound(onSlippable);
 
         UpdateCameraRotation();
-
-        ChaserCameraEffects();
     }
 
     public void ResetVelocity()
@@ -322,10 +320,5 @@ public class PlayerMovement : MonoBehaviour
                 slidingAudioSource.Stop();
             }
         }
-    }
-
-    void ChaserCameraEffects()
-    {
-
     }
 }
