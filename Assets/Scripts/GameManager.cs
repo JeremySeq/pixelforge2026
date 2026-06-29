@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
         var cameraData = mainCam.GetComponent<UniversalAdditionalCameraData>();
         if (cameraData == null) return;
 
-        Debug.Log("well we got here at least");
         switch (scene.name)
         {
             case "Demo":
@@ -29,7 +28,9 @@ public class GameManager : MonoBehaviour
                 break;
             case "Scene 2_1":
                 cameraData.SetRenderer(rendererBlackFogIndex);
-                Debug.Log("set black renderer!");
+                RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+                RenderSettings.ambientLight = Color.black;
+                RenderSettings.ambientIntensity = 0.0f;
                 break;
             default:
                 cameraData.SetRenderer(rendererNoFogIndex);
