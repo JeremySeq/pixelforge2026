@@ -194,10 +194,10 @@ MonoBehaviour:
   stepAudioSource: {fileID: -1461438877646451922}
   slidingAudioSource: {fileID: 2921765142190988209}
   footstepClips:
-  - {fileID: 8300000, guid: 065578435df170644980f0f5c2fa02e0, type: 3}
-  - {fileID: 8300000, guid: 03271bc540fb320408fa577b5c1cc89b, type: 3}
-  - {fileID: 8300000, guid: ed5f438d775a1d14aabfecfa0531f7e5, type: 3}
-  slidingClip: {fileID: 8300000, guid: 1bed0f1ac9952a24e95d89009c43f3cc, type: 3}
+  - {fileID: 8300000, guid: 68a37e8ca2d00219c8b33ba79cfb004c, type: 3}
+  - {fileID: 8300000, guid: 5ce92c53a0c8a14ae9ca697429da9a68, type: 3}
+  - {fileID: 8300000, guid: 43f3cb7a51d86b7d1af30b528f3cebee, type: 3}
+  slidingClip: {fileID: 8300000, guid: 4840db8a3aae00bc59b8bef631422577, type: 3}
 --- !u!114 &4317860805981961123
 MonoBehaviour:
   m_ObjectHideFlags: 0

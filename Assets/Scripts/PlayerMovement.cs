@@ -293,7 +293,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Sound(bool onSlippable)
     {
-        Debug.Log(slidingAudioSource.isPlaying);
+        // Debug.Log(slidingAudioSource.isPlaying);
 
         footstepTimer -= Time.deltaTime;
 
