@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
+using System;
 
 public class GameManager : MonoBehaviour
 {
-    private int rendererWithFog = 0;
-    private int rendererWithoutFog = 1;
+    [Header("Renderers")]
+    public int rendererNoFogIndex = 0;
+    public int rendererWhiteFogIndex = 1;
+    public int rendererBlackFogIndex = 2;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -15,34 +18,22 @@ public class GameManager : MonoBehaviour
         var cameraData = mainCam.GetComponent<UniversalAdditionalCameraData>();
         if (cameraData == null) return;
 
-        if (scene.name == "MainGameplayScene")
-        {
-            cameraData.SetRenderer(0);
-        }
-        else if (scene.name == "RetroMinigameScene")
-        {
-            cameraData.SetRenderer(1);
-        }
-
+        Debug.Log("well we got here at least");
         switch (scene.name)
         {
             case "Demo":
-                cameraData.SetRenderer(rendererWithFog);
-                Debug.Log("ran Demo! renderer set to 0");
+                cameraData.SetRenderer(rendererWhiteFogIndex);
                 break;
             case "school sequce":
-                cameraData.SetRenderer(rendererWithoutFog);
-                Debug.Log("ran school sequce! renderer set to 1");
+                cameraData.SetRenderer(rendererNoFogIndex);
                 break;
             case "Scene 2_1":
-                cameraData.SetRenderer(rendererWithFog);
-                Debug.Log("ran Scene 2_1! renderer set to 0");
+                cameraData.SetRenderer(rendererBlackFogIndex);
+                Debug.Log("set black renderer!");
                 break;
             default:
-                cameraData.SetRenderer(rendererWithFog);
-                Debug.Log("ran default! renderer set to 0");
+                cameraData.SetRenderer(rendererNoFogIndex);
                 break;
-
         }
     }
 

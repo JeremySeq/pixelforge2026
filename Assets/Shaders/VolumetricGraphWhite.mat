@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VolumetricGraph
+  m_Name: VolumetricGraphWhite
   m_Shader: {fileID: -6465566751694194690, guid: e6437ccb0e18fc0e89053ea4d3bed43b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
