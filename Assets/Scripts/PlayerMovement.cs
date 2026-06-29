@@ -167,10 +167,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 targetDirection = transform.right * moveValue.x + transform.forward * moveValue.y;
 
         RaycastHit groundHit;
-        float slopeThreshold = 0;
+        float slopeThreshold = 20;
         bool onSlippable = Physics.Raycast(bottomOfPlayer.position, Vector3.down, out groundHit, dist, notPlayerMask) && Vector3.Angle(groundHit.normal, Vector3.up) > slopeThreshold && groundHit.collider.CompareTag("slippable");
 
-        if (onSlippable && isSliding) // forced slope sliding
+        if (onSlippable) // forced slope sliding
         {
             Vector3 lookDir = cameraTransform.forward;
             // project look onto slope

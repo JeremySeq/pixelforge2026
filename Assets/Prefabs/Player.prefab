@@ -177,7 +177,7 @@ MonoBehaviour:
   heightLerpSpeed: 10
   slideSpeed: 30
   slideDuration: 0.8
-  slideFriction: 30
+  slideFriction: 50
   minSlideSpeed: 5
   slipSpeed: 20
   canDoubleJump: 1
