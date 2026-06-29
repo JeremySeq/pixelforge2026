@@ -175,9 +175,9 @@ MonoBehaviour:
   crouchingHeight: 0.5
   crouchSpeed: 4
   heightLerpSpeed: 10
-  slideSpeed: 20
+  slideSpeed: 30
   slideDuration: 0.8
-  slideFriction: 0.2
+  slideFriction: 50
   minSlideSpeed: 5
   slipSpeed: 12
   canDoubleJump: 1

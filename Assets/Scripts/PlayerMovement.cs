@@ -24,9 +24,9 @@ public class PlayerMovement : MonoBehaviour
     public float heightLerpSpeed = 10f;
 
     [Header("Slide")]
-    public float slideSpeed = 20f;
+    public float slideSpeed = 30f;
     public float slideDuration = .8f;
-    public float slideFriction = .2f;
+    public float slideFriction = 50f;
     [Tooltip("Speed necessary to toggle sliding with crouch button")]
     public float minSlideSpeed = 5f;
     public float slipSpeed = 12f;
@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 verticalVelocity;
 
     private bool isGrounded;
+    private bool wasGrounded;
     private int jumpCount = 0;
 
     private RaycastHit wallLeftHit;
@@ -69,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouching;
     private bool isSliding;
     private float slideTimer;
+    private float currentSlideSpeed = 0;
 
     [Header("Sounds")]
     public AudioSource stepAudioSource;
@@ -112,15 +114,22 @@ public class PlayerMovement : MonoBehaviour
         // scale using bottom of player as pivot
         ScaleAroundPivot(gameObject, bottomOfPlayer.position, new Vector3(gameObject.transform.localScale.x, newHeight, gameObject.transform.localScale.z));
 
-        if (crouchAction.WasPressedThisFrame() && isGrounded && horizontalVelocity.magnitude > minSlideSpeed)
+        if (crouchAction.IsPressed() && isGrounded && horizontalVelocity.magnitude > minSlideSpeed)
         {
-            isSliding = true;
-            slideTimer = slideDuration;
+            if (!isSliding)
+            {
+                currentSlideSpeed = slideSpeed;
+                isSliding = true;
+                slideTimer = slideDuration;
+            }
         }
-        if (!isCrouching)
+
+        if (!crouchAction.IsPressed())
         {
             isSliding = false;
         }
+
+        wasGrounded = isGrounded;
 
         // check walls
         float dist = 2.0f;
@@ -178,9 +187,18 @@ public class PlayerMovement : MonoBehaviour
         else if (isSliding) // ground sliding
         {
             slideTimer -= Time.deltaTime;
-            horizontalVelocity = Vector3.MoveTowards(horizontalVelocity, Vector3.zero, slideFriction * Time.deltaTime);
+
+            currentSlideSpeed = Mathf.MoveTowards(
+                currentSlideSpeed,
+                0f,
+                slideFriction * Time.deltaTime
+            );
+
+            horizontalVelocity = horizontalVelocity.normalized * currentSlideSpeed;
+
             controller.Move(horizontalVelocity * Time.deltaTime);
-            if (slideTimer <= 0f || horizontalVelocity.magnitude < minSlideSpeed)
+
+            if (slideTimer <= 0f || currentSlideSpeed < minSlideSpeed)
             {
                 isSliding = false;
             }
