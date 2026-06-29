@@ -75,6 +75,9 @@ public class PlayerMovement : MonoBehaviour
     private float slideTimer;
     private float currentSlideSpeed = 0;
 
+    private RaycastHit headHitHit;
+    private bool isHeadHitted;
+
     [Header("Sounds")]
     public AudioSource stepAudioSource;
     public AudioSource slidingAudioSource;
@@ -135,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
         wasGrounded = isGrounded;
 
         // check walls
-        float dist = 2.0f;
+        float dist = 1.0f;
         int notPlayerMask = ~LayerMask.GetMask("Player");
         Debug.DrawRay(transform.position, -transform.right * dist, wallLeft ? Color.green : Color.red);
         Debug.DrawRay(transform.position, transform.right * dist, wallRight ? Color.green : Color.red);
@@ -153,6 +156,10 @@ public class PlayerMovement : MonoBehaviour
         wallLeft &= canWallJump;
         wallRight &= canWallJump;
 
+        // head hitted
+        float headHitDist = 1.5f;
+        isHeadHitted = Physics.Raycast(transform.position, transform.up, out headHitHit, headHitDist);
+        Debug.DrawRay(transform.position, transform.up * headHitDist, isHeadHitted ? Color.green : Color.red);
 
         // ground movement
         isGrounded = controller.isGrounded;
@@ -161,6 +168,11 @@ public class PlayerMovement : MonoBehaviour
         {
             verticalVelocity.y = -2f;
             jumpCount = 0;
+        }
+
+        if (isHeadHitted)
+        {
+            verticalVelocity.y = -2f;
         }
 
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
