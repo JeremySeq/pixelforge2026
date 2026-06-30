@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e82bc7061a697458c4668d2a2b5858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  minIntensity: 10
-  maxIntensity: 15
+  minIntensity: 7
+  maxIntensity: 10
   minDelay: 0.05
   maxDelay: 0.2
