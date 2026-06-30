@@ -190,7 +190,6 @@ MonoBehaviour:
   cameraTiltStrength: 1
   cameraTiltSpeed: 5
   wallRunTilt: 20
-  chaser: {fileID: 0}
   stepAudioSource: {fileID: -1461438877646451922}
   slidingAudioSource: {fileID: 2921765142190988209}
   footstepClips:
@@ -210,7 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c4a448681a09746ba53a8be63dfc12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Checkpoint
-  spawn: {x: -3.44, y: 6.8, z: -22.2}
+  chaser: {fileID: 0}
+  blackScreenUI: {fileID: 0}
 --- !u!82 &-1461438877646451922
 AudioSource:
   m_ObjectHideFlags: 0
@@ -220,7 +220,7 @@ AudioSource:
   m_GameObject: {fileID: 3059920078759052235}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 83353746a51c41eb6886bb1bdb76bf08, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 065578435df170644980f0f5c2fa02e0, type: 3}
   m_PlayOnAwake: 0
@@ -317,7 +317,7 @@ AudioSource:
   m_GameObject: {fileID: 3059920078759052235}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 83353746a51c41eb6886bb1bdb76bf08, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
