@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -59,8 +60,10 @@ public class Checkpoint : MonoBehaviour
     {
         if (ended)
         {
-          StartCoroutine(LoadNextScene());
-        } else {
+            StartCoroutine(LoadNextScene());
+        }
+        else
+        {
             GetComponent<CharacterController>().enabled = false;
             transform.position = spawn;
             transform.eulerAngles = spawnRot;
@@ -70,12 +73,13 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    private IEnumerator LoadNextScene() {
-      blackScreenUI.SetActive(true);
+    private IEnumerator LoadNextScene()
+    {
+        blackScreenUI.SetActive(true);
 
-      yield return new WaitForSeconds(2f);
-      // Next scene
-      int index = SceneManager.GetActiveScene().buildIndex;
-      SceneManager.LoadScene(index + 1);
+        yield return new WaitForSeconds(2f);
+        // Next scene
+        int index = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(index + 1);
     }
 }
