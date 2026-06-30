@@ -2631,6 +2631,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 839837273482016705, guid: d59d9b0bc55cee6e4ad1319c73a746b8, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4898925324474494639, guid: d59d9b0bc55cee6e4ad1319c73a746b8, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
@@ -2715,8 +2719,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7706855573860164559, guid: d59d9b0bc55cee6e4ad1319c73a746b8, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7942869796016335610, guid: d59d9b0bc55cee6e4ad1319c73a746b8, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8218852669358971265, guid: d59d9b0bc55cee6e4ad1319c73a746b8, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
