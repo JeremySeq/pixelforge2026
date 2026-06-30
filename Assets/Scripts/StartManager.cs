@@ -5,7 +5,6 @@ public class StartManager : MonoBehaviour
 {
   public void PlayGame()
   {
-      Debug.Log("Play clicked!");
       int index = SceneManager.GetActiveScene().buildIndex;
       SceneManager.LoadScene(index + 1);
   }
