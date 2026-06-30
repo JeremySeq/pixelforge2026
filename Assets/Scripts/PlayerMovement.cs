@@ -49,9 +49,6 @@ public class PlayerMovement : MonoBehaviour
     public float wallRunTilt = 1.0f;
     private float currentTilt = 0.0f;
 
-    [Header("Chaser")]
-    public GameObject chaser;
-
     private CharacterController controller;
     private InputActionAsset inputAsset;
     private InputAction moveAction;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8144442737871566293}
   - component: {fileID: 5464004207121564447}
   - component: {fileID: 4541186926873339355}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 1553302610309001877}
   - component: {fileID: 2827620722913322854}
   - component: {fileID: 986561357239094071}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chaser
   m_TagString: notWallrunnable
   m_Icon: {fileID: 0}

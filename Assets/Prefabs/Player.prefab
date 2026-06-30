@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1114567601666379558}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 4317860805981961123}
   - component: {fileID: -1461438877646451922}
   - component: {fileID: 2921765142190988209}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: notWallrunnable
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 5838698884943265020}
   - component: {fileID: 1579268346893014749}
   - component: {fileID: 5990861785631737447}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
