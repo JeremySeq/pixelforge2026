@@ -59,10 +59,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (ended)
         {
-            blackScreenUI.SetActive(true);
-            // Next scene
-            int index = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(index + 1);
+          StartCoroutine(LoadNextScene());
         } else {
             GetComponent<CharacterController>().enabled = false;
             transform.position = spawn;
@@ -71,5 +68,14 @@ public class Checkpoint : MonoBehaviour
             GetComponent<CharacterController>().enabled = true;
             chaser.respawn();
         }
+    }
+
+    private IEnumerator LoadNextScene() {
+      blackScreenUI.SetActive(true);
+
+      yield return new WaitForSeconds(2f);
+      // Next scene
+      int index = SceneManager.GetActiveScene().buildIndex;
+      SceneManager.LoadScene(index + 1);
     }
 }
