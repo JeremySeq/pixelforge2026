@@ -6,6 +6,7 @@ public class Checkpoint : MonoBehaviour
 {
     [Header("Spawn")]
     private Vector3 spawn;
+    private Vector3 spawnRot;
 
     [Header("Chaser")]
     public ChaserMovement chaser;
@@ -21,6 +22,7 @@ public class Checkpoint : MonoBehaviour
     void Start()
     {
         spawn = transform.position;
+        spawnRot = transform.eulerAngles;
         playerMovementController = GetComponent<PlayerMovement>();
         ended = false;
         blackScreenUI.SetActive(false);
@@ -64,6 +66,7 @@ public class Checkpoint : MonoBehaviour
         } else {
             GetComponent<CharacterController>().enabled = false;
             transform.position = spawn;
+            transform.eulerAngles = spawnRot;
             playerMovementController.ResetVelocity();
             GetComponent<CharacterController>().enabled = true;
             chaser.respawn();
