@@ -36,7 +36,7 @@ public class PauseManager : MonoBehaviour
     }
 
   public void Respawn() {
-    Checkpoint player = FindAnyObjectByType<Checkpoint>();
+    Death player = FindAnyObjectByType<Death>();
 
     if (player != null)
     {

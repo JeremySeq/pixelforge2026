@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-public class Checkpoint : MonoBehaviour
+public class Death : MonoBehaviour
 {
     [Header("Spawn")]
     private Vector3 spawn;

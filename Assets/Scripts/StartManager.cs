@@ -17,6 +17,7 @@ public class StartManager : MonoBehaviour
     {
         int index = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(index + 1);
+        Time.timeScale = 1f;
     }
 
     public void QuitGame()
