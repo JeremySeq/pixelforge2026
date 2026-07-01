@@ -1,13 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartManager : MonoBehaviour
 {
     public GameObject controlPanel;
+    public Slider volumeSlider;
 
     void Start()
     {
         controlPanel.SetActive(false);
+        volumeSlider.value = AudioListener.volume;
     }
 
     public void PlayGame()

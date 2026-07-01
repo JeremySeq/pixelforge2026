@@ -1,16 +1,20 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
   private bool isPaused;
   public GameObject pauseMenu;
+  public Slider volumeSlider;
 
   private InputActionAsset inputAsset;
   private InputAction escapeAction;
 
   void Start() {
     pauseMenu.SetActive(false);
+    volumeSlider.value = AudioListener.volume;
     isPaused = false;
     inputAsset = InputSystem.actions;
     escapeAction = inputAsset.FindAction("Escape");
@@ -24,12 +28,12 @@ public class PauseManager : MonoBehaviour
 
   public void QuitGame()
   {
-      Application.Quit();
+    SceneManager.LoadScene(0);
   }
 
-  public void SetVolume(float sliderValue) {
-    AudioListener.volume = sliderValue;
-  }
+    public void SetVolume(float sliderValue) {
+        AudioListener.volume = sliderValue;
+    }
 
   public void Respawn() {
     Checkpoint player = FindAnyObjectByType<Checkpoint>();
