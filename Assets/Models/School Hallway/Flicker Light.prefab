@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 9211302407257802497}
   - component: {fileID: 6991303070703663548}
   - component: {fileID: 4149075512097261390}
-  - component: {fileID: -8822633356085500560}
   m_Layer: 0
   m_Name: Flicker Light
   m_TagString: Untagged
@@ -128,19 +127,3 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &-8822633356085500560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555957410801929811}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25e82bc7061a697458c4668d2a2b5858, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  minIntensity: 2
-  maxIntensity: 10
-  minDelay: 0.05
-  maxDelay: 0.2
