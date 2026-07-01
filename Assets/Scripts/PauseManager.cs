@@ -12,9 +12,12 @@ public class PauseManager : MonoBehaviour
   private InputActionAsset inputAsset;
   private InputAction escapeAction;
 
+  private float savedVolume;
+
   void Start() {
     pauseMenu.SetActive(false);
     volumeSlider.value = AudioListener.volume;
+    savedVolume = AudioListener.volume;
     isPaused = false;
     inputAsset = InputSystem.actions;
     escapeAction = inputAsset.FindAction("Escape");
@@ -29,10 +32,11 @@ public class PauseManager : MonoBehaviour
   public void QuitGame()
   {
     SceneManager.LoadScene(0);
+    TogglePause();
   }
 
     public void SetVolume(float sliderValue) {
-        AudioListener.volume = sliderValue;
+        savedVolume = sliderValue;
     }
 
   public void Respawn() {
@@ -59,12 +63,14 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        AudioListener.volume = 0f;
     }
     else
     {
         Time.timeScale = 1f;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        AudioListener.volume = savedVolume;
     }
   }
 }

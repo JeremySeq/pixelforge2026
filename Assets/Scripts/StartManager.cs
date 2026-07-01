@@ -11,13 +11,14 @@ public class StartManager : MonoBehaviour
     {
         controlPanel.SetActive(false);
         volumeSlider.value = AudioListener.volume;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void PlayGame()
     {
         int index = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(index + 1);
-        Time.timeScale = 1f;
     }
 
     public void QuitGame()
