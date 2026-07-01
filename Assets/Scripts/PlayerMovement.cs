@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -136,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
         // check walls
         float dist = 1.0f;
-        int notPlayerMask = ~LayerMask.GetMask("Player");
+        int notPlayerMask = ~(LayerMask.GetMask("Player") | LayerMask.GetMask("Ignore Raycast") | LayerMask.GetMask("End") | LayerMask.GetMask("Chaser"));
         Debug.DrawRay(transform.position, -transform.right * dist, wallLeft ? Color.green : Color.red);
         Debug.DrawRay(transform.position, transform.right * dist, wallRight ? Color.green : Color.red);
         wallLeft = Physics.Raycast(transform.position, -transform.right, out wallLeftHit, dist, notPlayerMask);
@@ -155,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
 
         // head hitted
         float headHitDist = 1.5f;
-        isHeadHitted = Physics.Raycast(transform.position, transform.up, out headHitHit, headHitDist);
+        isHeadHitted = Physics.Raycast(transform.position, transform.up, out headHitHit, headHitDist, notPlayerMask);
         Debug.DrawRay(transform.position, transform.up * headHitDist, isHeadHitted ? Color.green : Color.red);
 
         // ground movement
@@ -330,4 +331,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    // void OnControllerColliderHit(ControllerColliderHit hit)
+    // {
+    //     if (hit.normal.y < -0.5)
+    //     {
+    //         verticalVelocity.y = -2f;
+    //         Debug.Log("headhit");
+    //         Debug.Log("headhit: " + hit.normal.y + ", " + hit.collider.isTrigger);
+    //     }
+    // }
 }
