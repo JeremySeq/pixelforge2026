@@ -303,8 +303,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Sound(bool onSlippable)
     {
-        // Debug.Log(slidingAudioSource.isPlaying);
-
         footstepTimer -= Time.deltaTime;
 
         if ((controller.isGrounded || wallLeft || wallRight) && !(isSliding || onSlippable) && horizontalVelocity.magnitude > 0.1f)
