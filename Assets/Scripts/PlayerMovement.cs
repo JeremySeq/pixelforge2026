@@ -331,14 +331,4 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
-    // void OnControllerColliderHit(ControllerColliderHit hit)
-    // {
-    //     if (hit.normal.y < -0.5)
-    //     {
-    //         verticalVelocity.y = -2f;
-    //         Debug.Log("headhit");
-    //         Debug.Log("headhit: " + hit.normal.y + ", " + hit.collider.isTrigger);
-    //     }
-    // }
 }
