@@ -6,38 +6,41 @@ using System;
 public class GameManager : MonoBehaviour
 {
     [Header("Renderers")]
-    public int rendererNoFogIndex = 0;
-    public int rendererWhiteFogIndex = 1;
-    public int rendererBlackFogIndex = 2;
+    public int rendererDreamIndex = 0;
+    public int rendererRealLifeIndex = 1;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Camera mainCam = Camera.main;
-        if (mainCam == null) return;
-
-        var cameraData = mainCam.GetComponent<UniversalAdditionalCameraData>();
-        if (cameraData == null) return;
-
         switch (scene.name)
         {
             case "Demo":
-                cameraData.SetRenderer(rendererWhiteFogIndex);
+                Dream();
                 break;
             case "school sequce":
-                cameraData.SetRenderer(rendererNoFogIndex);
+                Dream();
                 break;
-            case "Scene 2_1":
-                cameraData.SetRenderer(rendererBlackFogIndex);
-                RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
-                RenderSettings.ambientLight = Color.black;
-                RenderSettings.ambientIntensity = 0.0f;
+            case "Scene 1_1":
+                Dream();
+                break;
+            case "Scene 1_1_1":
+                Dream();
                 break;
             case "Scene 1_2":
-                cameraData.SetRenderer(rendererNoFogIndex);
-                Debug.Log("ran Scene 1_2! renderer set to 1");
+                RealLife();
+                break;
+            case "Scene 2_1":
+                Dream();
+                SetAmbientBlack();
+                break;
+            case "Scene 2_2":
+                RealLife();
+                break;
+            case "Scene 3_1":
+                Dream();
+                SetAmbientBlack();
                 break;
             default:
-                cameraData.SetRenderer(rendererNoFogIndex);
+                Dream();
                 break;
         }
     }
@@ -50,5 +53,30 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void Dream()
+    {
+        Camera mainCam = Camera.main;
+        if (mainCam == null) return;
+        var cameraData = mainCam.GetComponent<UniversalAdditionalCameraData>();
+        if (cameraData == null) return;
+        cameraData.SetRenderer(rendererDreamIndex);
+    }
+
+    void RealLife()
+    {
+        Camera mainCam = Camera.main;
+        if (mainCam == null) return;
+        var cameraData = mainCam.GetComponent<UniversalAdditionalCameraData>();
+        if (cameraData == null) return;
+        cameraData.SetRenderer(rendererRealLifeIndex);
+    }
+
+    void SetAmbientBlack()
+    {
+        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+        RenderSettings.ambientLight = Color.black;
+        RenderSettings.ambientIntensity = 0.0f;
     }
 }

@@ -3,7 +3,122 @@ guid: 89f9cc7f9adc93043996d3bb7d5b789c
 ModelImporter:
   serializedVersion: 24501
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Garbage_bag
+    second: {fileID: 2100000, guid: 9cab1eb87aa5046b780559b3f2091bed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: a7a86ca108218a68289cfc168134d4ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pipes
+    second: {fileID: 2100000, guid: 7917179107e10d041abb8d8d3ed853c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pipes.001
+    second: {fileID: 2100000, guid: 957c70f924d958128bf39af0bc389071, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trash
+    second: {fileID: 2100000, guid: 8bf3f62a935d6cea19b690967db66134, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trash_01
+    second: {fileID: 2100000, guid: 3c60e783dae9e8c2cb377b5aa7b71743, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brick_modern
+    second: {fileID: 2100000, guid: f327b6e54ffe3f9f58be5dea2e641a06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brick_modern_01
+    second: {fileID: 2100000, guid: 8fa941ec22799b3aea2eb8b0bc99ab75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brick_pavement
+    second: {fileID: 2100000, guid: 1419664be2d13fde591b55f3f6b87506, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bricks
+    second: {fileID: 2100000, guid: a247caab9033c707983ff1d6cf1dcade, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: concrete_bare_01
+    second: {fileID: 2100000, guid: 7d1851a9de928f9e08d05f082e30c292, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: concrete_base
+    second: {fileID: 2100000, guid: 6a977406874bfdf7fa1e501b5a48161e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: concrete_base_02
+    second: {fileID: 2100000, guid: c964e08222e8e4602b84d3156c3ecb39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: concrete_base_03
+    second: {fileID: 2100000, guid: b804199c3a8e28ffdac353cdb77cd412, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: concrete_dirty
+    second: {fileID: 2100000, guid: 7b0aef600dfadedfc8e2d59169131fbe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: debris
+    second: {fileID: 2100000, guid: ca1c084406c63f71ba1a0b028028e29b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: debris_01
+    second: {fileID: 2100000, guid: d1e29acab34961c2486eea3b38c8e2dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: debris_02
+    second: {fileID: 2100000, guid: 800fc2226c1f96348941bc99693cbfc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: debris_03
+    second: {fileID: 2100000, guid: a28c2a50dffaaee0c9cc3499893109bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: door_metal
+    second: {fileID: 2100000, guid: 12c02f35e84402c1791c5d431f86c8f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: door_metal_01
+    second: {fileID: 2100000, guid: 65c165695e656be8ab7c52ff6692c66f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: door_metal_02
+    second: {fileID: 2100000, guid: 291f0acce4ec9b0b2836f82a19401767, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: soil_mud
+    second: {fileID: 2100000, guid: 9f8377fddc3b99ce2973fb5655de1280, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -36,7 +151,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
@@ -47,7 +162,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
