@@ -13,10 +13,13 @@ public class CutsceneCameraMovement : MonoBehaviour
     private Vector2 targetOffset;
     private Vector2 currentOffset;
 
+    private Quaternion startingRotation;
+
     
     void Start()
     {
         lookAction = InputSystem.actions.FindAction("Look");
+        startingRotation = transform.localRotation;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -51,6 +54,6 @@ public class CutsceneCameraMovement : MonoBehaviour
 
         // smooth camera motion
         currentOffset = Vector2.Lerp(currentOffset, targetOffset, lookSmooth * Time.deltaTime);
-        transform.localRotation = Quaternion.Euler(-currentOffset.y, currentOffset.x, 0f);
+        transform.localRotation = startingRotation * Quaternion.Euler(-currentOffset.y, currentOffset.x, 0f);
     }
 }
