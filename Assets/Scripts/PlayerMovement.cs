@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Camera Settings")]
     public GameObject camera;
     public float lookSensitivity = 0.3f;
-    private Vector3 lookRotation;
+    private Vector3 lookRotation = new Vector3(180.0f, 0.0f, 0.0f);
     private Transform cameraTransform;
     private Camera cameraCamera;
     public float cameraTiltStrength = 2.0f;
