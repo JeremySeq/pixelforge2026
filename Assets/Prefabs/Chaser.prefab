@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4541186926873339355}
   m_Layer: 7
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: notWallrunnable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,9 +269,9 @@ GameObject:
   - component: {fileID: 3814563549187599828}
   - component: {fileID: 3540100006457930714}
   - component: {fileID: 3379484745767258941}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere Volume
-  m_TagString: Untagged
+  m_TagString: notWallrunnable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
