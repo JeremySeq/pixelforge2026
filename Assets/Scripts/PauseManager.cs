@@ -2,12 +2,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class PauseManager : MonoBehaviour
 {
   private bool isPaused;
   public GameObject pauseMenu;
   public Slider volumeSlider;
+
+  public Button respawnButton;
+  public TextMeshProUGUI respawnButtonText;
 
   private InputActionAsset inputAsset;
   private InputAction escapeAction;
@@ -60,6 +64,17 @@ public class PauseManager : MonoBehaviour
 
     if (isPaused)
     {
+        if (FindAnyObjectByType<Death>() == null)
+        {
+            respawnButton.interactable = false;
+            respawnButtonText.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+        }
+        else
+        {
+            respawnButton.interactable = true;
+            respawnButtonText.color = Color.white;
+        }
+
         Time.timeScale = 0f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
